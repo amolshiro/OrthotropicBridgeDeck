@@ -1,0 +1,12 @@
+def createSeedBias():
+    import part
+    import mesh
+
+    p = mdb.models['Model-1'].parts['FBInside']
+    e = p.edges
+    pickedEndEdges = e.getSequenceFromMask(mask=(
+        '[#0 #e000003 #c11c0000 #3 #0 #f38000 #1f', 
+        ' #0 #c0370000 #7 #700007 #80007000 #fffdf3 #0:2', 
+        ' #f6052000 #2400b60f #1000 #0:3 #700000 #100 ]', ), )
+    p.seedEdgeByBias(biasMethod=DOUBLE, endEdges=pickedEndEdges, minSize=0.3, 
+        maxSize=1.5, constraint=FINER)
